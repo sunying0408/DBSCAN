@@ -1,0 +1,28 @@
+import pandas as pd
+import numpy as np
+
+data=pd.read_csv("商务住宅.csv")
+
+data.head()
+
+import folium
+map_1 = folium.Map(location=[22.887686, 113.738263],tiles='OpenStreetMap',
+ zoom_start=12)
+folium.CircleMarker([22.88786, 113.738263],
+                    radius=6,
+                    color='blue',
+                    #popup=str(each[1]['d'])+','+str(each[1]['c']),
+                    popup='popup',
+                    fill_color='#FD8A6C'
+                    ).add_to(map_1)
+map_1
+
+for i in range(1000):
+    folium.CircleMarker([data['lat'][i],data['lng'][i]],
+                        radius=3,
+                        color='red',
+                        #popup=str(each[1]['d'])+','+str(each[1]['c']),
+                        popup='popup',
+                        fill_color='#FD8A6C'
+                        ).add_to(map_1)
+map_1
